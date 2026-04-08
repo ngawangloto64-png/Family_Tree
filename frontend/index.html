@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spinner - Spin the Wheel!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ── Header ──────────────────────────── -->
+    <div class="header">
+        <h1>SPINNER</h1>
+        <p>Spin the wheel and let fate decide!</p>
+    </div>
+
+    <!-- ── Mode Tabs ───────────────────────── -->
+    <div class="mode-tabs">
+        <button class="mode-tab" data-mode="name">Names</button>
+        <button class="mode-tab" data-mode="number">Numbers</button>
+        <button class="mode-tab active" data-mode="custom">Custom</button>
+        <button class="mode-tab" data-mode="yesno">Yes / No</button>
+        <button class="mode-tab" data-mode="decision">Decision</button>
+        <button class="mode-tab" data-mode="color">Colors</button>
+    </div>
+
+    <!-- ── Mode Header ─────────────────────── -->
+    <div class="mode-header" id="modeHeader">
+        <h2 id="modeTitle" contenteditable="true" spellcheck="false">Give Your Tittle!</h2>
+        <p id="modeDesc" contenteditable="true" spellcheck="false">Add your own items and spin to pick one randomly</p>
+    </div>
+
+    <!-- ── Main Layout ─────────────────────── -->
+    <div class="main-container">
+
+        <!-- Spinner Wheel -->
+        <div class="spinner-section">
+            <div class="wheel-container">
+                <div class="wheel-pointer">&#9660;</div>
+                <canvas id="spinnerCanvas"></canvas>
+            </div>
+
+            <div class="result-display">
+                <div id="resultText" class="result-text"></div>
+            </div>
+
+            <button id="spinBtn" class="spin-btn">SPIN</button>
+        </div>
+
+        <!-- Controls Sidebar -->
+        <div class="controls-section">
+
+            <!-- Custom Items (shown for name/custom/color/decision modes) -->
+            <div id="customControls" class="card">
+                <h3>Items</h3>
+                <div id="itemsList" class="items-list"></div>
+                <div class="add-item-form">
+                    <input type="text" id="newItemInput" placeholder="Add item...">
+                    <input type="color" id="newItemColor" value="#FF6384">
+                    <button id="addItemBtn" class="add-btn">+</button>
+                </div>
+            </div>
+
+            <!-- Number Controls (shown for number mode) -->
+            <div id="numberControls" class="card" style="display:none;">
+                <h3>Number Range</h3>
+                <div class="number-controls">
+                    <label>
+                        Min
+                        <input type="number" id="minNum" value="1" min="0" max="9999" onchange="loadNumberWheel()">
+                    </label>
+                    <label>
+                        Max
+                        <input type="number" id="maxNum" value="10" min="1" max="9999" onchange="loadNumberWheel()">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="card">
+                <h3>Quick Presets</h3>
+                <div class="preset-buttons">
+                    <button class="preset-btn" data-preset="names">Names</button>
+                    <button class="preset-btn" data-preset="numbers">1 - 10</button>
+                    <button class="preset-btn" data-preset="colors">Colors</button>
+                    <button class="preset-btn" data-preset="decisions">Decisions</button>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="card">
+                <h3>History</h3>
+                <div id="historyList" class="history-list">
+                    <div style="color:var(--text-secondary);font-size:0.85rem;text-align:center;padding:10px;">No spins yet</div>
+                </div>
+                <button id="clearHistoryBtn" class="clear-btn">Clear History</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── Scripts ─────────────────────────── -->
+    <script src="js/api.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/wheel.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
